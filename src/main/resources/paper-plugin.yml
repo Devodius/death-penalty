@@ -1,0 +1,5 @@
+name: Death-Penalty-Plugin
+version: '${version}'
+main: fr.araxgaming.deathpenalty.DeathPenaltyPlugin
+description: Paper Plugin aimed toward penalizing death in minecraft
+api-version: '1.20'
