@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/cloud.commandframework/cloud-annotations/1.8.3/68dcc44c297893509c1923e2db6561ef4266c288/cloud-annotations-1.8.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/cloud.commandframework/cloud-core/1.8.3/e1c709347bef37b2ec261fe4a3be56a80e543cd/cloud-core-1.8.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/cloud.commandframework/cloud-services/1.8.3/14ede2d39942c798d71396c293d5661237825ec8/cloud-services-1.8.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.leangen.geantyref/geantyref/1.3.13/8a56163906cd05968c6618dcdbd049e9a513ee4b/geantyref-1.3.13.jar" />
+        </processorPath>
+        <module name="death-penalty.main" />
+      </profile>
+    </annotationProcessing>
     <bytecodeTargetLevel target="17" />
   </component>
 </project>

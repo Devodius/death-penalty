@@ -1,0 +1,5 @@
+# What happen to inventory on death, possible values:
+# DEFAULT : Minecraft default
+# CLEAR : Clear inventory on death
+# KEEP : Keep inventory on death
+inventoryOnDeath: DEFAULT
