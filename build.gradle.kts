@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "fr.arax-gaming"
-version = "1.0-SNAPSHOT"
+version = "0.1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -33,7 +33,7 @@ tasks {
     }
     jar {
         dependsOn(shadowJar)
-        archiveClassifier.set("default")
+        archiveClassifier.set("slim")
     }
     shadowJar {
         archiveClassifier.set("")
