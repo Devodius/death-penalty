@@ -32,8 +32,8 @@ tasks {
         expand("version" to version)
     }
     jar {
+        enabled = false
         dependsOn(shadowJar)
-        archiveClassifier.set("slim")
     }
     shadowJar {
         archiveClassifier.set("")
