@@ -18,16 +18,8 @@ public class SettingsCommand implements Loadable {
     private DeathPenaltyPlugin deathPenaltyPlugin;
 
     @Override
-    public void load(DeathPenaltyPlugin plugin) {
+    public void load(final DeathPenaltyPlugin plugin) {
         deathPenaltyPlugin = plugin;
-    }
-
-    @Override
-    public void enable(DeathPenaltyPlugin plugin) {
-    }
-
-    @Override
-    public void disable(DeathPenaltyPlugin plugin) {
     }
 
     @CommandMethod("deathpenaltysettings|dpsettings inventoryOnDeath set <value>")
@@ -44,7 +36,8 @@ public class SettingsCommand implements Loadable {
     public void getInventoryOnDeath(
             final @Nonnull CommandSender sender
     ) {
-        InventoryOnDeath inventoryOnDeath = deathPenaltyPlugin.getPluginConfig().getInventoryOnDeath();
+        final InventoryOnDeath inventoryOnDeath = deathPenaltyPlugin.getPluginConfig().getInventoryOnDeath();
         sender.sendMessage("InventoryOnDeath is set to " + inventoryOnDeath);
     }
+
 }
