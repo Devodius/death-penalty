@@ -1,0 +1,20 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "minecraft:item/totem_of_undying"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "custom_model_data": 3160001
+      },
+      "model": "death_penalty:item/totem_of_drop_inventory"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 3160002
+      },
+      "model": "death_penalty:item/totem_of_keep_inventory"
+    }
+  ]
+}
