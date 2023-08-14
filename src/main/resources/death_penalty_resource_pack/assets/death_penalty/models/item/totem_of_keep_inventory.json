@@ -1,0 +1,7 @@
+{
+  "credit": "Made with Blockbench",
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "death_penalty:item/totem_of_keep_inventory"
+  }
+}
