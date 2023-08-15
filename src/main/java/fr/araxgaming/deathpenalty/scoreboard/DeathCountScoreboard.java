@@ -1,6 +1,7 @@
 package fr.araxgaming.deathpenalty.scoreboard;
 
 import fr.araxgaming.deathpenalty.DeathPenaltyPlugin;
+import fr.araxgaming.deathpenalty.Loadable;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Statistic;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -10,7 +11,7 @@ import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 
 
-public class DeathCountScoreboard implements DeathPenaltyScoreboard {
+public class DeathCountScoreboard extends Loadable implements DeathPenaltyScoreboard {
 
     private static final String OBJECTIF_NAME = "DeathCount";
     private static final Component OBJECTIF_DISPLAY_NAME = Component.text("Death count");
@@ -20,6 +21,8 @@ public class DeathCountScoreboard implements DeathPenaltyScoreboard {
 
     @Override
     public void enable(final DeathPenaltyPlugin plugin) {
+        super.enable(plugin);
+
         criteria = Criteria.statistic(Statistic.DEATHS);
     }
 

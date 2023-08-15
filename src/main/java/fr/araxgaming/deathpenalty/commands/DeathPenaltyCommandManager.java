@@ -8,25 +8,26 @@ import cloud.commandframework.execution.CommandExecutionCoordinator;
 import cloud.commandframework.meta.CommandMeta;
 import cloud.commandframework.paper.PaperCommandManager;
 import fr.araxgaming.deathpenalty.DeathPenaltyPlugin;
-import fr.araxgaming.deathpenalty.Loadable;
+import fr.araxgaming.deathpenalty.LoadableManager;
 import fr.araxgaming.deathpenalty.commands.settings.SettingsCommand;
 import org.bukkit.command.CommandSender;
 
 import java.util.function.Function;
 
-public class DeathPenaltyCommandManager implements Loadable {
+public class DeathPenaltyCommandManager extends LoadableManager {
 
     private final SettingsCommand settingsCommand = new SettingsCommand();
     private PaperCommandManager<CommandSender> commandManager;
     private AnnotationParser<CommandSender> annotationParser;
 
-    @Override
-    public void load(DeathPenaltyPlugin plugin) {
-        settingsCommand.load(plugin);
+    public DeathPenaltyCommandManager() {
+        registerLoadable(settingsCommand);
     }
 
     @Override
-    public void enable(DeathPenaltyPlugin plugin) {
+    public void enable(final DeathPenaltyPlugin plugin) {
+        super.enable(plugin);
+
         final Function<CommandSender, CommandSender> mapperFunction = Function.identity();
         final Function<CommandTree<CommandSender>, CommandExecutionCoordinator<CommandSender>> executionCoordinatorFunction = CommandExecutionCoordinator.simpleCoordinator();
 
@@ -44,12 +45,7 @@ public class DeathPenaltyCommandManager implements Loadable {
                         .build();
         annotationParser = new AnnotationParser<>(commandManager, CommandSender.class, commandMetaFunction);
 
-        settingsCommand.enable(plugin);
         annotationParser.parse(settingsCommand);
     }
 
-    @Override
-    public void disable(DeathPenaltyPlugin plugin) {
-        settingsCommand.disable(plugin);
-    }
 }

@@ -11,7 +11,7 @@ public enum InventoryOnDeath {
 
     private final String text;
 
-    InventoryOnDeath(String text) {
+    InventoryOnDeath(final String text) {
         this.text = text;
     }
 
