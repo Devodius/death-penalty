@@ -1,9 +1,8 @@
 package fr.araxgaming.deathpenalty.listener;
 
-import fr.araxgaming.deathpenalty.Loadable;
 import org.bukkit.event.Event;
 
-public interface PluginEventHandler<EventHandled extends Event> extends Loadable {
+public interface PluginEventHandler<EventHandled extends Event> {
 
     void execute(EventHandled event);
 

@@ -1,35 +1,27 @@
 package fr.araxgaming.deathpenalty.scoreboard;
 
 import fr.araxgaming.deathpenalty.DeathPenaltyPlugin;
-import fr.araxgaming.deathpenalty.Loadable;
+import fr.araxgaming.deathpenalty.LoadableManager;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
-public class DeathPenaltyScoreboardManager implements Loadable {
+public class DeathPenaltyScoreboardManager extends LoadableManager {
 
     private final DeathCountScoreboard deathCountScoreboard = new DeathCountScoreboard();
 
-    private DeathPenaltyPlugin plugin;
     private Scoreboard scoreboard;
 
-    @Override
-    public void load(final DeathPenaltyPlugin plugin) {
-        this.plugin = plugin;
-        deathCountScoreboard.load(plugin);
+    public DeathPenaltyScoreboardManager() {
+        registerLoadable(deathCountScoreboard);
     }
 
     @Override
     public void enable(final DeathPenaltyPlugin plugin) {
-        deathCountScoreboard.enable(plugin);
+        super.enable(plugin);
 
         setupScoreboard();
-    }
-
-    @Override
-    public void disable(final DeathPenaltyPlugin plugin) {
-        deathCountScoreboard.disable(plugin);
     }
 
     public void onPlayerJoin(final PlayerJoinEvent playerJoinEvent) {

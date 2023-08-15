@@ -1,13 +1,19 @@
 package fr.araxgaming.deathpenalty;
 
-public interface Loadable {
+import java.util.logging.Logger;
+
+public abstract class Loadable {
+    protected DeathPenaltyPlugin plugin;
+    protected Logger logger;
 
     /**
      * First function called on plugin load
      *
      * @param plugin ref to the main plugin
      */
-    default void load(DeathPenaltyPlugin plugin) {
+    public void load(final DeathPenaltyPlugin plugin) {
+        this.plugin = plugin;
+        this.logger = plugin.getLogger();
     }
 
     /**
@@ -15,7 +21,7 @@ public interface Loadable {
      *
      * @param plugin ref to the main plugin
      */
-    default void enable(DeathPenaltyPlugin plugin) {
+    public void enable(final DeathPenaltyPlugin plugin) {
     }
 
     /**
@@ -23,7 +29,7 @@ public interface Loadable {
      *
      * @param plugin ref to the main plugin
      */
-    default void disable(DeathPenaltyPlugin plugin) {
+    public void disable(final DeathPenaltyPlugin plugin) {
     }
 
 }

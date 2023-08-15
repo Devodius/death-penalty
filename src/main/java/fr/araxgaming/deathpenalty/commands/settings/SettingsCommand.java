@@ -4,30 +4,21 @@ import cloud.commandframework.annotations.Argument;
 import cloud.commandframework.annotations.CommandDescription;
 import cloud.commandframework.annotations.CommandMethod;
 import cloud.commandframework.annotations.CommandPermission;
-import fr.araxgaming.deathpenalty.DeathPenaltyPlugin;
 import fr.araxgaming.deathpenalty.Loadable;
 import fr.araxgaming.deathpenalty.config.enums.InventoryOnDeath;
 import org.bukkit.command.CommandSender;
 
 import javax.annotation.Nonnull;
 
-@SuppressWarnings("unused")
 @CommandPermission("deathpenalty.settings")
-public class SettingsCommand implements Loadable {
-
-    private DeathPenaltyPlugin deathPenaltyPlugin;
-
-    @Override
-    public void load(final DeathPenaltyPlugin plugin) {
-        deathPenaltyPlugin = plugin;
-    }
+public class SettingsCommand extends Loadable {
 
     @CommandMethod("deathpenaltysettings|dpsettings inventoryOnDeath set <value>")
     public void setInventoryOnDeath(
             final @Nonnull CommandSender sender,
             final @Nonnull @Argument("value") InventoryOnDeath value
     ) {
-        deathPenaltyPlugin.getPluginConfig().setInventoryOnDeath(value);
+        plugin.getPluginConfig().setInventoryOnDeath(value);
         sender.sendMessage("InventoryOnDeath has been set to " + value);
     }
 
@@ -36,7 +27,7 @@ public class SettingsCommand implements Loadable {
     public void getInventoryOnDeath(
             final @Nonnull CommandSender sender
     ) {
-        final InventoryOnDeath inventoryOnDeath = deathPenaltyPlugin.getPluginConfig().getInventoryOnDeath();
+        final InventoryOnDeath inventoryOnDeath = plugin.getPluginConfig().getInventoryOnDeath();
         sender.sendMessage("InventoryOnDeath is set to " + inventoryOnDeath);
     }
 

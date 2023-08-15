@@ -11,7 +11,6 @@ public class DeathPenaltyPlugin extends JavaPlugin {
     private final DeathPenaltyConfig deathPenaltyConfig = new DeathPenaltyConfig();
     private final DeathPenaltyListener deathPenaltyListener = new DeathPenaltyListener();
     private final DeathPenaltyCommandManager deathPenaltyCommandManager = new DeathPenaltyCommandManager();
-
     private final DeathPenaltyScoreboardManager deathPenaltyScoreboardManager = new DeathPenaltyScoreboardManager();
 
     @Override
