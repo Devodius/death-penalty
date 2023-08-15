@@ -36,7 +36,6 @@ tasks {
     }
     classes {
         dependsOn(getByName("BundleResourcePack"))
-        dependsOn(getByName("BundleDataPack"))
     }
     jar {
         enabled = false
@@ -61,13 +60,4 @@ tasks.register<Zip>("BundleResourcePack") {
     destinationDirectory.set(layout.buildDirectory.dir("resourcePack"))
 
     from(layout.buildDirectory.dir("resources/main/death_penalty_resource_pack"))
-}
-
-tasks.register<Zip>("BundleDataPack") {
-    dependsOn(tasks.processResources)
-
-    archiveAppendix.set("data-pack")
-    destinationDirectory.set(layout.buildDirectory.dir("dataPack"))
-
-    from(layout.buildDirectory.dir("resources/main/death_penalty_data_pack"))
 }
