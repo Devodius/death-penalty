@@ -1,0 +1,30 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:totem_of_undying",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": "Totem of keep inventory"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                "Keep your inventory on death",
+                "1 use totem, you do not need to have it in hand"
+              ]
+            },
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{CustomModelData:3160002}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

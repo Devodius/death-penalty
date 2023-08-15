@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "death_penalty:totem_of_keep_inventory"
+      }
+    }
+  },
+  "rewards": {
+    "function": "death_penalty:totem_of_keep_inventory",
+    "loot": [
+      "death_penalty:totem_of_keep_inventory"
+    ]
+  }
+}
