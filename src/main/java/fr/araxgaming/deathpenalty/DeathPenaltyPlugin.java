@@ -2,6 +2,7 @@ package fr.araxgaming.deathpenalty;
 
 import fr.araxgaming.deathpenalty.config.DeathPenaltyConfig;
 import fr.araxgaming.deathpenalty.listener.DeathPenaltyListener;
+import fr.araxgaming.deathpenalty.recipes.DeathPenaltyRecipesManager;
 import fr.araxgaming.deathpenalty.scoreboard.DeathPenaltyScoreboardManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -12,6 +13,7 @@ public class DeathPenaltyPlugin extends JavaPlugin {
     private final DeathPenaltyConfig deathPenaltyConfig = new DeathPenaltyConfig();
     private final DeathPenaltyListener deathPenaltyListener = new DeathPenaltyListener();
     private final DeathPenaltyScoreboardManager deathPenaltyScoreboardManager = new DeathPenaltyScoreboardManager();
+    private final DeathPenaltyRecipesManager deathPenaltyRecipesManager = new DeathPenaltyRecipesManager();
 
     @Override
     public void onLoad() {
@@ -19,6 +21,7 @@ public class DeathPenaltyPlugin extends JavaPlugin {
         deathPenaltyConfig.load(this);
         deathPenaltyScoreboardManager.load(this);
         deathPenaltyListener.load(this);
+        deathPenaltyRecipesManager.load(this);
     }
 
     @Override
@@ -27,6 +30,7 @@ public class DeathPenaltyPlugin extends JavaPlugin {
         deathPenaltyConfig.enable(this);
         deathPenaltyScoreboardManager.enable(this);
         deathPenaltyListener.enable(this);
+        deathPenaltyRecipesManager.enable(this);
         getServer().getPluginManager().registerEvents(deathPenaltyListener, this);
 
         instance = this;
@@ -38,6 +42,7 @@ public class DeathPenaltyPlugin extends JavaPlugin {
         deathPenaltyConfig.disable(this);
         deathPenaltyScoreboardManager.disable(this);
         deathPenaltyListener.disable(this);
+        deathPenaltyRecipesManager.disable(this);
     }
 
     public DeathPenaltyConfig getPluginConfig() {
