@@ -27,7 +27,7 @@ public class TotemOfDropInventoryRecipes extends Loadable {
         Bukkit.addRecipe(recipe);
     }
 
-    private ItemStack getItemCrafted() {
+    public static ItemStack getItemCrafted() {
         final ItemStack totem = new ItemStack(Material.TOTEM_OF_UNDYING);
         final ItemMeta meta = totem.getItemMeta();
 

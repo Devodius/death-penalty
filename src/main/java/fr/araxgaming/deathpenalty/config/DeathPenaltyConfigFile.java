@@ -18,17 +18,17 @@ public class DeathPenaltyConfigFile extends Loadable {
         this.plugin.saveDefaultConfig();
     }
 
-    InventoryOnDeath getInventoryOnDeath() {
-        return getInventoryOnDeath(InventoryOnDeath.DEFAULT);
-    }
-
     void setInventoryOnDeath(final InventoryOnDeath inventoryOnDeath) {
         final FileConfiguration config = plugin.getConfig();
         config.set(INVENTORY_ON_DEATH_PATH, inventoryOnDeath.toString());
         plugin.saveConfig();
     }
 
-    private InventoryOnDeath getInventoryOnDeath(final InventoryOnDeath defaultValue) {
+    InventoryOnDeath getInventoryOnDeath() {
+        return getInventoryOnDeath(InventoryOnDeath.DEFAULT);
+    }
+
+    InventoryOnDeath getInventoryOnDeath(final InventoryOnDeath defaultValue) {
         final FileConfiguration config = plugin.getConfig();
         final String textValue = Objects.requireNonNullElse(config.getString(INVENTORY_ON_DEATH_PATH), "");
         try {
