@@ -22,13 +22,7 @@ public class PlayerDeathHandler extends Loadable implements PluginEventHandler<P
     public void execute(final PlayerDeathEvent playerDeathEvent) {
         final InventoryOnDeath inventoryOnDeath = config.getInventoryOnDeath();
 
-        switch (inventoryOnDeath) {
-            case DEFAULT -> {
-                // Empty
-            }
-            case KEEP -> PlayerDeathService.keepInventory(playerDeathEvent);
-            case CLEAR -> PlayerDeathService.deleteDrops(playerDeathEvent);
-        }
+        PlayerDeathService.doInventoryDeath(playerDeathEvent, inventoryOnDeath);
     }
 
 }
