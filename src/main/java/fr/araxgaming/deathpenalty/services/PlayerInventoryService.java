@@ -6,6 +6,7 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Set;
 
 public class PlayerInventoryService {
@@ -29,6 +30,32 @@ public class PlayerInventoryService {
             }
         }
         return null;
+    }
+
+    public static int isItemInList(final List<ItemStack> itemStacksList, final ItemStack toSearch) {
+        for (int index = 0; index < itemStacksList.size(); index++) {
+            if (PlayerInventoryService.isSameCustomItem(itemStacksList.get(index), toSearch)) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    public static int isItemInList(final List<ItemStack> itemStacksList, final List<ItemStack> toSearch) {
+        for (final ItemStack search : toSearch) {
+            final int index = isItemInList(itemStacksList, search);
+
+            if (index != -1) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    public static void removeOneFromList(final List<ItemStack> itemStacksList, final int index) {
+        final ItemStack stack = itemStacksList.get(index);
+
+        stack.setAmount(stack.getAmount() - 1);
     }
 
     public static boolean isSameCustomItem(final ItemStack itemStack1, final ItemStack itemStack2) {
