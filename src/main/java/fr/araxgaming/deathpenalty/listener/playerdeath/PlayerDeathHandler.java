@@ -14,6 +14,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 
 import java.util.List;
 
@@ -46,7 +47,12 @@ public class PlayerDeathHandler extends Loadable implements PluginEventHandler<P
         final ItemStack originalTotem = new ItemStack(Material.TOTEM_OF_UNDYING);
         final ItemStack totemKeep = TotemOfKeepInventoryRecipes.getItemCrafted();
         final ItemStack totemDrop = TotemOfDropInventoryRecipes.getItemCrafted();
-        final List<ItemStack> validTotems = List.of(originalTotem, totemKeep, totemDrop);
+        final List<ItemStack> validTotems = List.of(totemKeep, totemDrop);
+        final PlayerInventory inventory = player.getInventory();
+
+        if (PlayerInventoryService.isSameCustomItem(inventory.getItemInMainHand(), originalTotem) || PlayerInventoryService.isSameCustomItem(inventory.getItemInOffHand(), originalTotem)) {
+            return;
+        }
 
         final int foundIndex = PlayerInventoryService.isItemInList(drops, validTotems);
 
