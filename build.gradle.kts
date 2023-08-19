@@ -5,7 +5,6 @@ plugins {
 }
 
 group = "fr.arax-gaming"
-version = "0.2.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
