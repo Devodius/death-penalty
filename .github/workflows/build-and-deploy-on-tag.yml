@@ -1,0 +1,54 @@
+name: Build_And_Deploy_On_Tag
+
+on:
+  push:
+    tags:
+      - v*.*.*
+
+jobs:
+  BumpVersion:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: ChangeVersion
+        run: |
+          sed -i "s/version = \"\(.*\)\"/version = \"${{github.ref_name}}-SNAPSHOT\"/" ./build.gradle.kts
+
+      - name: Commit files
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -a -m ":bookmark: : Bump version in build.gradle"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: main
+
+  Assemble:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2.7.0
+
+      - name: Run build with Gradle Wrapper
+        run: |
+          chmod +x ./gradlew
+          ./gradlew build -Pversion="${{github.ref_name}}"
+
+      - name: Create release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/libs/*.jar,build/resourcePack/*.jar"
+          allowUpdates: true
+          artifactErrorsFailBuild: true
+          generateReleaseNotes: true

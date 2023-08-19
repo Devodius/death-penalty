@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   Assemble:
@@ -24,5 +27,6 @@ jobs:
       - name: Archive built jar
         uses: actions/upload-artifact@v3
         with:
-          name: Built Jar
-          path: build/libs/*.jar
+          path: |
+            build/libs/*.jar
+            build/resourcePack/*.jar
