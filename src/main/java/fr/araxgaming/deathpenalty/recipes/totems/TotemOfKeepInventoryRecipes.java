@@ -45,7 +45,7 @@ public class TotemOfKeepInventoryRecipes extends Loadable {
 
     private Recipe getRecipe(final ItemStack result) {
         final NamespacedKey namespacedKey = new NamespacedKey(plugin, NAMESPACE);
-        final ShapedRecipe recipe = new ShapedRecipe(namespaceKey, result);
+        final ShapedRecipe recipe = new ShapedRecipe(namespacedKey, result);
 
         recipe.shape("QGQ", "DWS", "QNQ");
 
