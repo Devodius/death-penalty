@@ -51,7 +51,7 @@ public class TotemOfKeepInventoryRecipes extends Loadable {
 
         recipe.setIngredient('Q', Material.QUARTZ_BLOCK);
         recipe.setIngredient('G', Material.GOLDEN_APPLE);
-        recipe.setIngredient('D', Material.DRAGONS_BREATH);
+        recipe.setIngredient('D', Material.DRAGON_BREATH);
         recipe.setIngredient('W', Material.WITHER_SKELETON_SKULL);
         recipe.setIngredient('S', Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE);
         recipe.setIngredient('N', Material.NETHERITE_INGOT);
