@@ -48,12 +48,12 @@ public class TotemOfDropInventoryRecipes extends Loadable {
         final ShapedRecipe recipe = new ShapedRecipe(namespacedKey, result);
 
         recipe.shape("CRC", "GDI", "CEC");
-        recipe.addIngredient('C', Material.COAL_BLOCK);
-        recipe.addIngredient('R', Material.REDSTONE_BLOCK);
-        recipe.addIngredient('G', Material.GOLD_INGOT);
-        recipe.addIngredient('D', Material.DIAMOND);
-        recipe.addIngredient('I', Material.IRON_INGOT);
-        recipe.addIngredient('E', Material.EMERALD);
+        recipe.setIngredient('C', Material.COAL_BLOCK);
+        recipe.setIngredient('R', Material.REDSTONE_BLOCK);
+        recipe.setIngredient('G', Material.GOLD_INGOT);
+        recipe.setIngredient('D', Material.DIAMOND);
+        recipe.setIngredient('I', Material.IRON_INGOT);
+        recipe.setIngredient('E', Material.EMERALD);
 
         return recipe;
     }
