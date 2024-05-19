@@ -45,9 +45,16 @@ public class TotemOfKeepInventoryRecipes extends Loadable {
 
     private Recipe getRecipe(final ItemStack result) {
         final NamespacedKey namespacedKey = new NamespacedKey(plugin, NAMESPACE);
-        final ShapelessRecipe recipe = new ShapelessRecipe(namespacedKey, result);
+        final ShapedRecipe recipe = new ShapedRecipe(namespaceKey, result);
 
-        recipe.addIngredient(4, Material.STICK);
+        recipe.shape("QGQ", "DWS" "QNQ");
+
+        recipe.setIngredient('Q', Material.QUARTZ_BLOCK);
+        recipe.setIngredient('G', Material.GOLDEN_APPLE);
+        recipe.setIngredient('D', Material.DRAGONS_BREATH);
+        recipe.setIngredient('W', Material.WITHER_SKELETON_SKULL);
+        recipe.setIngredient('S', Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE);
+        recipe.setIngredient('N', Material.NETHERITE_INGOT);
 
         return recipe;
     }
