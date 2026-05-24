@@ -7,11 +7,13 @@ on:
 
 jobs:
   BumpVersion:
-    permissions: write-all
+    permissions:
+      contents: write
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -26,19 +28,26 @@ jobs:
           git commit -a -m ":bookmark: : Bump version in build.gradle"
 
       - name: Push changes
-        uses: ad-m/github-push-action@master
+        uses: ad-m/github-push-action@v1.3.0
         with:
           branch: main
 
   Assemble:
-    permissions: write-all
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: 25
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2.7.0
+        uses: gradle/actions/setup-gradle@v6
 
       - name: Run build with Gradle Wrapper
         run: |
@@ -46,7 +55,7 @@ jobs:
           ./gradlew build -Pversion="${{github.ref_name}}"
 
       - name: Create release
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@v1.21.0
         with:
           artifacts: "build/libs/*.jar,build/resourcePack/*.jar"
           allowUpdates: true
