@@ -8,7 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.ShapelessRecipe;
+import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
@@ -45,9 +45,15 @@ public class TotemOfDropInventoryRecipes extends Loadable {
 
     private Recipe getRecipe(final ItemStack result) {
         final NamespacedKey namespacedKey = new NamespacedKey(plugin, NAMESPACE);
-        final ShapelessRecipe recipe = new ShapelessRecipe(namespacedKey, result);
+        final ShapedRecipe recipe = new ShapedRecipe(namespacedKey, result);
 
-        recipe.addIngredient(3, Material.STICK);
+        recipe.shape("CRC", "GDI", "CEC");
+        recipe.setIngredient('C', Material.COAL_BLOCK);
+        recipe.setIngredient('R', Material.REDSTONE_BLOCK);
+        recipe.setIngredient('G', Material.GOLD_INGOT);
+        recipe.setIngredient('D', Material.DIAMOND);
+        recipe.setIngredient('I', Material.IRON_INGOT);
+        recipe.setIngredient('E', Material.EMERALD);
 
         return recipe;
     }
