@@ -1,11 +1,11 @@
 plugins {
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("com.gradleup.shadow") version "9.4.1"
     id("java")
-    id("xyz.jpenilla.run-paper") version "2.1.0"
+    id("xyz.jpenilla.run-paper") version "3.0.2"
 }
 
 group = "fr.arax-gaming"
-version = "0.1.0-SNAPSHOT"
+version = "0.2.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -13,18 +13,14 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
-    implementation("cloud.commandframework", "cloud-paper", "1.8.3")
-    implementation("cloud.commandframework:cloud-core:1.8.3")
-    implementation("cloud.commandframework:cloud-annotations:1.8.3")
-    annotationProcessor("cloud.commandframework:cloud-annotations:1.8.3")
+    compileOnly("io.papermc.paper:paper-api:26.1.2.build.+")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
 }
 
 java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+    toolchain.languageVersion.set(JavaLanguageVersion.of(25))
 }
 
 tasks {
@@ -39,7 +35,7 @@ tasks {
         archiveClassifier.set("")
     }
     runServer {
-        minecraftVersion("1.20.1")
+        minecraftVersion("26.1.2")
     }
 }
 

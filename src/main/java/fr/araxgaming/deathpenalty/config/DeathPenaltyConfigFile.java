@@ -28,7 +28,7 @@ public class DeathPenaltyConfigFile extends Loadable {
         plugin.saveConfig();
     }
 
-    InventoryOnDeath getInventoryOnDeath(final InventoryOnDeath defaultValue) {
+    private InventoryOnDeath getInventoryOnDeath(final InventoryOnDeath defaultValue) {
         final FileConfiguration config = plugin.getConfig();
         final String textValue = Objects.requireNonNullElse(config.getString(INVENTORY_ON_DEATH_PATH), "");
         try {
