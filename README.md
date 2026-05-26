@@ -6,6 +6,10 @@ If enabled, on death all items will be deleted. There is also a scoreboard keepi
 This plugin also add custom totem with craft that allow the inventory to be dropped or to keep the inventory.  
 **The custom totem do not need to be in hand to work, they can be anywhere in your inventory.**
 
+[//]: # (TODO)
+A resource pack is given to add the custom totem models. It is planned to use paper to add the resource pack
+automatically.
+
 ## Totems
 
 ### Totem of drop inventory
@@ -34,6 +38,9 @@ inventoryOnDeath: DEFAULT
 # Should the craft for custom totem be enabled.
 # You can replace the craft using a datapack or a command. cf plugin readme
 enableTotemCraft: true
+
+# Should the death scoreboard be enabled
+enableDeathCount: true
 ```
 
 ## Commands

@@ -48,4 +48,13 @@ public class DeathPenaltyConfigFile extends Loadable {
         return config.getBoolean("enableTotemCraft", defaultValue);
     }
 
+    boolean getEnableDeathCount() {
+        return getEnableDeathCount(true);
+    }
+
+    boolean getEnableDeathCount(final boolean defaultValue) {
+        final FileConfiguration config = plugin.getConfig();
+        return config.getBoolean("enableDeathCount", defaultValue);
+    }
+
 }

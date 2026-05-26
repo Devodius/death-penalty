@@ -19,12 +19,19 @@ public class DeathPenaltyScoreboardManager extends LoadableManager {
 
     @Override
     public void enable(final DeathPenaltyPlugin plugin) {
-        super.enable(plugin);
+        if (!plugin.getPluginConfig().isEnableDeathCount()) {
+            return;
+        }
 
+        super.enable(plugin);
         setupScoreboard();
     }
 
     public void onPlayerJoin(final PlayerJoinEvent playerJoinEvent) {
+        if (!plugin.getPluginConfig().isEnableDeathCount()) {
+            return;
+        }
+        
         deathCountScoreboard.onPlayerJoin(playerJoinEvent);
 
         playerJoinEvent.getPlayer().setScoreboard(scoreboard);
