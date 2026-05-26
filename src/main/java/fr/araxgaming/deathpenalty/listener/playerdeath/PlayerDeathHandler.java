@@ -63,11 +63,11 @@ public class PlayerDeathHandler extends Loadable implements PluginEventHandler<P
         final String totemType = PlayerInventoryService.getDataFromKey(itemStack, plugin.getNamespaceKeyService().getCustomTotem());
 
         if (Objects.equals(totemType, TotemOfKeepInventoryRecipes.CUSTOM_TOTEM_NAME)) {
-            PlayerParticleService.playerTotemEffect(player, itemStack);
+            PlayerParticleService.playerTotemEffect(player);
             PlayerInventoryService.removeOneFromList(drops, foundIndex);
             PlayerDeathService.keepInventory(drops, keep);
         } else if (Objects.equals(totemType, TotemOfDropInventoryRecipes.CUSTOM_TOTEM_NAME)) {
-            PlayerParticleService.playerTotemEffect(player, itemStack);
+            PlayerParticleService.playerTotemEffect(player);
             PlayerInventoryService.removeOneFromList(drops, foundIndex);
         }
     }
