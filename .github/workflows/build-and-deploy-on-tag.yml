@@ -3,7 +3,7 @@ name: Build_And_Deploy_On_Tag
 on:
   push:
     tags:
-      - v*.*.*
+      - "[0-9]+.[0-9]+.[0-9]+"
 
 jobs:
   BumpVersion:
@@ -19,7 +19,7 @@ jobs:
 
       - name: ChangeVersion
         run: |
-          sed -i "s/version = \"\(.*\)\"/version = \"${{github.ref_name}}\"/" ./build.gradle.kts
+          sed -i "s/version=[0-9]+\.[0-9]+\.[0-9]+/version=${{github.ref_name}}/" ./gradle.properties
 
       - name: Commit files
         run: |
