@@ -1,7 +1,7 @@
 <p align="center">
     <img src="/assets/Icon.png" alt="Plugin Icon"/>
 </p>
-<h1 style="text-align:center;">death-penalty</h1>
+<h1 align="center">death-penalty</h1>
 
 This plugin is here to add consequences for death without being banned like in hardcore.  
 If enabled, on death all items will be deleted. There is also a scoreboard keeping track of the number of death.
