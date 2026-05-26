@@ -49,6 +49,7 @@ tasks.getByName<Test>("test") {
 }
 
 tasks.register<Zip>("BundleResourcePack") {
+    description = "Take the ressource pack in the ressource folder archive it and output it in resourcePack folder"
     dependsOn(tasks.processResources)
 
     archiveAppendix.set("resource-pack")

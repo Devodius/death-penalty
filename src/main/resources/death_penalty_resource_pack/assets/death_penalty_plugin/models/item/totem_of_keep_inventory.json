@@ -1,0 +1,7 @@
+{
+  "credit": "Hyrox",
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "death_penalty_plugin:item/totem_of_keep_inventory"
+  }
+}

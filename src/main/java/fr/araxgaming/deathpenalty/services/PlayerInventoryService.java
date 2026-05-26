@@ -1,51 +1,18 @@
 package fr.araxgaming.deathpenalty.services;
 
-import org.bukkit.inventory.Inventory;
+import io.papermc.paper.persistence.PersistentDataContainerView;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Set;
 
 public class PlayerInventoryService {
 
-    public static @Nullable ItemStack isMaterialInInventory(final Inventory playerInventory, final Set<ItemStack> toSearch) {
-        for (final ItemStack search : toSearch) {
-            if (playerInventory.contains(search)) {
-                return search;
-            }
-        }
-        return null;
-    }
-
-    public static @Nullable ItemStack isMaterialInHand(final PlayerInventory playerInventory, final Set<ItemStack> toSearch) {
-        for (final ItemStack search : toSearch) {
-            if (isSameCustomItem(playerInventory.getItemInMainHand(), search)) {
-                return search;
-            }
-            if (isSameCustomItem(playerInventory.getItemInOffHand(), search)) {
-                return search;
-            }
-        }
-        return null;
-    }
-
-    public static int isItemInList(final List<ItemStack> itemStacksList, final ItemStack toSearch) {
+    public static int searchItemsForDataKey(final List<ItemStack> itemStacksList, final NamespacedKey dataKey) {
         for (int index = 0; index < itemStacksList.size(); index++) {
-            if (PlayerInventoryService.isSameCustomItem(itemStacksList.get(index), toSearch)) {
-                return index;
-            }
-        }
-        return -1;
-    }
-
-    public static int isItemInList(final List<ItemStack> itemStacksList, final List<ItemStack> toSearch) {
-        for (final ItemStack search : toSearch) {
-            final int index = isItemInList(itemStacksList, search);
-
-            if (index != -1) {
+            if (PlayerInventoryService.hasDataFromKey(itemStacksList.get(index), dataKey)) {
                 return index;
             }
         }
@@ -58,25 +25,15 @@ public class PlayerInventoryService {
         stack.setAmount(stack.getAmount() - 1);
     }
 
-    public static boolean isSameCustomItem(final ItemStack itemStack1, final ItemStack itemStack2) {
-        final ItemMeta itemMeta1 = itemStack1.getItemMeta();
-        final ItemMeta itemMeta2 = itemStack2.getItemMeta();
+    @Nullable
+    public static String getDataFromKey(final ItemStack itemStack, final NamespacedKey dataKey) {
+        PersistentDataContainerView pdc = itemStack.getPersistentDataContainer();
 
-        if (itemStack1.getType() != itemStack2.getType()) {
-            return false;
-        }
+        return pdc.get(dataKey, PersistentDataType.STRING);
+    }
 
-        if (itemMeta1.hasCustomModelData() != itemMeta2.hasCustomModelData()) {
-            return false;
-        } else if (!itemMeta1.hasCustomModelData()) {
-            return true;
-        }
-
-        if (itemMeta1.getCustomModelData() != itemMeta2.getCustomModelData()) {
-            return false;
-        }
-
-        return true;
+    public static boolean hasDataFromKey(final ItemStack itemStack, final NamespacedKey dataKey) {
+        return getDataFromKey(itemStack, dataKey) != null;
     }
 
 }

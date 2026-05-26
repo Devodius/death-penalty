@@ -19,7 +19,7 @@ jobs:
 
       - name: ChangeVersion
         run: |
-          sed -i "s/version = \"\(.*\)\"/version = \"${{github.ref_name}}-SNAPSHOT\"/" ./build.gradle.kts
+          sed -i "s/version = \"\(.*\)\"/version = \"${{github.ref_name}}\"/" ./build.gradle.kts
 
       - name: Commit files
         run: |

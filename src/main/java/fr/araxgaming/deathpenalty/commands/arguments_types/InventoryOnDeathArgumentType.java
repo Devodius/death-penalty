@@ -36,7 +36,7 @@ public final class InventoryOnDeathArgumentType implements CustomArgumentType.Co
             final String name = setting.toString();
 
             // Only suggest if the setting name matches the user input
-            if (name.startsWith(builder.getRemainingLowerCase())) {
+            if (name.startsWith(builder.getRemaining())) {
                 builder.suggest(setting.toString());
             }
         }

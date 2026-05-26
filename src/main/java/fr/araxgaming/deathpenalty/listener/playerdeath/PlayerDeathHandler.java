@@ -17,6 +17,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
 import java.util.List;
+import java.util.Objects;
 
 public class PlayerDeathHandler extends Loadable implements PluginEventHandler<PlayerDeathEvent> {
 
@@ -29,7 +30,7 @@ public class PlayerDeathHandler extends Loadable implements PluginEventHandler<P
         config = plugin.getPluginConfig();
     }
 
-    private static void doInventoryDeath(final PlayerDeathEvent playerDeathEvent, final InventoryOnDeath inventoryOnDeath) {
+    private void doInventoryDeath(final PlayerDeathEvent playerDeathEvent, final InventoryOnDeath inventoryOnDeath) {
         final List<ItemStack> drops = playerDeathEvent.getDrops();
         final List<ItemStack> keep = playerDeathEvent.getItemsToKeep();
 
@@ -43,18 +44,15 @@ public class PlayerDeathHandler extends Loadable implements PluginEventHandler<P
         }
     }
 
-    private static void totemInventory(final Player player, final List<ItemStack> drops, final List<ItemStack> keep) {
-        final ItemStack originalTotem = new ItemStack(Material.TOTEM_OF_UNDYING);
-        final ItemStack totemKeep = TotemOfKeepInventoryRecipes.getItemCrafted();
-        final ItemStack totemDrop = TotemOfDropInventoryRecipes.getItemCrafted();
-        final List<ItemStack> validTotems = List.of(totemKeep, totemDrop);
+    private void totemInventory(final Player player, final List<ItemStack> drops, final List<ItemStack> keep) {
         final PlayerInventory inventory = player.getInventory();
 
-        if (PlayerInventoryService.isSameCustomItem(inventory.getItemInMainHand(), originalTotem) || PlayerInventoryService.isSameCustomItem(inventory.getItemInOffHand(), originalTotem)) {
+
+        if (isDefaultTotem(inventory.getItemInMainHand()) || isDefaultTotem(inventory.getItemInOffHand())) {
             return;
         }
 
-        final int foundIndex = PlayerInventoryService.isItemInList(drops, validTotems);
+        final int foundIndex = PlayerInventoryService.searchItemsForDataKey(drops, plugin.getNamespaceKeyService().getCustomTotem());
 
         if (foundIndex == -1 || foundIndex >= drops.size()) {
             PlayerDeathService.deleteDrops(drops);
@@ -62,17 +60,27 @@ public class PlayerDeathHandler extends Loadable implements PluginEventHandler<P
         }
 
         final ItemStack itemStack = drops.get(foundIndex);
+        final String totemType = PlayerInventoryService.getDataFromKey(itemStack, plugin.getNamespaceKeyService().getCustomTotem());
 
-        if (PlayerInventoryService.isSameCustomItem(itemStack, totemKeep)) {
+        if (Objects.equals(totemType, TotemOfKeepInventoryRecipes.CUSTOM_TOTEM_NAME)) {
             PlayerParticleService.playerTotemEffect(player, itemStack);
             PlayerInventoryService.removeOneFromList(drops, foundIndex);
             PlayerDeathService.keepInventory(drops, keep);
-        } else if (PlayerInventoryService.isSameCustomItem(itemStack, totemDrop)) {
+        } else if (Objects.equals(totemType, TotemOfDropInventoryRecipes.CUSTOM_TOTEM_NAME)) {
             PlayerParticleService.playerTotemEffect(player, itemStack);
             PlayerInventoryService.removeOneFromList(drops, foundIndex);
         }
     }
 
+    private boolean isDefaultTotem(final ItemStack item) {
+        if (item.getType() != Material.TOTEM_OF_UNDYING) {
+            return false;
+        }
+
+        return !PlayerInventoryService.hasDataFromKey(item, plugin.getNamespaceKeyService().getCustomTotem());
+    }
+
+    @Override
     public void execute(final PlayerDeathEvent playerDeathEvent) {
         final InventoryOnDeath inventoryOnDeath = config.getInventoryOnDeath();
 

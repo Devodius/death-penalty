@@ -5,18 +5,18 @@ import fr.araxgaming.deathpenalty.Loadable;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 
 import java.util.List;
 
 public class TotemOfKeepInventoryRecipes extends Loadable {
 
-    private static final int MODEL_DATA = 3160002;
-    private static final String NAMESPACE = "totem_of_keep_inventory";
+    public static final String CUSTOM_TOTEM_NAME = "totem_of_keep_inventory";
 
     @Override
     public void load(final DeathPenaltyPlugin plugin) {
@@ -27,16 +27,19 @@ public class TotemOfKeepInventoryRecipes extends Loadable {
         Bukkit.addRecipe(recipe);
     }
 
-    public static ItemStack getItemCrafted() {
+    public ItemStack getItemCrafted() {
         final ItemStack totem = new ItemStack(Material.TOTEM_OF_UNDYING);
         final ItemMeta meta = totem.getItemMeta();
 
-        meta.setCustomModelData(MODEL_DATA);
-        meta.displayName(Component.text("Totem of keep inventory"));
+        meta.itemName(Component.text("Totem of keep inventory"));
+        meta.setItemModel(plugin.getNamespaceKeyService().getTotemOfKeepInventory());
         meta.lore(List.of(
-                Component.text("Keep your inventory on death"),
-                Component.text("1 use totem, you do not need to have it in hand")
+            Component.text("Keep your inventory on death"),
+            Component.text("1 use totem, you do not need to have it in hand")
         ));
+
+        final PersistentDataContainer pdc = meta.getPersistentDataContainer();
+        pdc.set(plugin.getNamespaceKeyService().getCustomTotem(), PersistentDataType.STRING, CUSTOM_TOTEM_NAME);
 
         totem.setItemMeta(meta);
 
@@ -44,8 +47,7 @@ public class TotemOfKeepInventoryRecipes extends Loadable {
     }
 
     private Recipe getRecipe(final ItemStack result) {
-        final NamespacedKey namespacedKey = new NamespacedKey(plugin, NAMESPACE);
-        final ShapedRecipe recipe = new ShapedRecipe(namespacedKey, result);
+        final ShapedRecipe recipe = new ShapedRecipe(plugin.getNamespaceKeyService().getTotemOfKeepInventory(), result);
 
         recipe.shape("QGQ", "DWS", "QNQ");
 

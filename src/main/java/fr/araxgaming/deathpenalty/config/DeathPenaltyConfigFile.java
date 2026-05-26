@@ -18,14 +18,14 @@ public class DeathPenaltyConfigFile extends Loadable {
         this.plugin.saveDefaultConfig();
     }
 
+    InventoryOnDeath getInventoryOnDeath() {
+        return getInventoryOnDeath(InventoryOnDeath.DEFAULT);
+    }
+
     void setInventoryOnDeath(final InventoryOnDeath inventoryOnDeath) {
         final FileConfiguration config = plugin.getConfig();
         config.set(INVENTORY_ON_DEATH_PATH, inventoryOnDeath.toString());
         plugin.saveConfig();
-    }
-
-    InventoryOnDeath getInventoryOnDeath() {
-        return getInventoryOnDeath(InventoryOnDeath.DEFAULT);
     }
 
     InventoryOnDeath getInventoryOnDeath(final InventoryOnDeath defaultValue) {
@@ -37,6 +37,15 @@ public class DeathPenaltyConfigFile extends Loadable {
             logger.severe("DeathPenaltyPlugin: invalid value for config " + INVENTORY_ON_DEATH_PATH + " using " + defaultValue.toString());
             return defaultValue;
         }
+    }
+
+    boolean getEnableTotemCraft() {
+        return getEnableTotemCraft(true);
+    }
+
+    boolean getEnableTotemCraft(final boolean defaultValue) {
+        final FileConfiguration config = plugin.getConfig();
+        return config.getBoolean("enableTotemCraft", defaultValue);
     }
 
 }

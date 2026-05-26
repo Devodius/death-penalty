@@ -3,7 +3,6 @@ package fr.araxgaming.deathpenalty.listener.entityResurrect;
 import fr.araxgaming.deathpenalty.Loadable;
 import fr.araxgaming.deathpenalty.listener.PluginEventHandler;
 import fr.araxgaming.deathpenalty.services.PlayerInventoryService;
-import org.bukkit.Material;
 import org.bukkit.event.entity.EntityResurrectEvent;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.EquipmentSlot;
@@ -22,7 +21,7 @@ public class EntityResurrectHandler extends Loadable implements PluginEventHandl
 
         final ItemStack undyingItem = entityEquipment.getItem(undyingHand);
 
-        if (PlayerInventoryService.isSameCustomItem(undyingItem, new ItemStack(Material.TOTEM_OF_UNDYING))) {
+        if (!PlayerInventoryService.hasDataFromKey(undyingItem, plugin.getNamespaceKeyService().getCustomTotem())) {
             return;
         }
 
