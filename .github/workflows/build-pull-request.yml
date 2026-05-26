@@ -8,6 +8,8 @@ on:
 jobs:
   Assemble:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout
@@ -30,5 +32,6 @@ jobs:
       - name: Archive built jar
         uses: actions/upload-artifact@v7
         with:
-          name: Built Jar
-          path: build/libs/*.jar
+          path: |
+            build/libs/*.jar
+            build/resourcePack/*.zip

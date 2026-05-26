@@ -5,7 +5,6 @@ plugins {
 }
 
 group = "fr.arax-gaming"
-version = "0.2.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -25,7 +24,13 @@ java {
 
 tasks {
     processResources {
-        expand("version" to version)
+        inputs.property("version", version)
+        filesMatching("**/*.yml") {
+            expand("version" to version)
+        }
+    }
+    classes {
+        dependsOn(getByName("BundleResourcePack"))
     }
     jar {
         enabled = false
@@ -41,4 +46,14 @@ tasks {
 
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
+}
+
+tasks.register<Zip>("BundleResourcePack") {
+    description = "Take the ressource pack in the ressource folder archive it and output it in resourcePack folder"
+    dependsOn(tasks.processResources)
+
+    archiveAppendix.set("resource-pack")
+    destinationDirectory.set(layout.buildDirectory.dir("resourcePack"))
+
+    from(layout.buildDirectory.dir("resources/main/death_penalty_resource_pack"))
 }

@@ -1,5 +1,13 @@
-# What happen to inventory on death, possible values:
+# What happens to inventory on death, possible values:
 # DEFAULT : Minecraft default
+# TOTEM : CLEAR + totem
 # CLEAR : Clear inventory on death
 # KEEP : Keep inventory on death
 inventoryOnDeath: DEFAULT
+
+# Should the craft for custom totem be enabled.
+# You can replace the craft using a datapack or a command. cf plugin readme
+enableTotemCraft: true
+
+# TODO: Add texture pack load
+# TODO: Enable scoreboard

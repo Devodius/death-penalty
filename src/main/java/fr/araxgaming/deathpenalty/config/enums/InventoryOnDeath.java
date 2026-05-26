@@ -5,6 +5,7 @@ import java.util.List;
 public enum InventoryOnDeath {
 
     DEFAULT("DEFAULT"),
+    TOTEM("TOTEM"),
     CLEAR("CLEAR"),
     KEEP("KEEP"),
     ;
@@ -18,6 +19,7 @@ public enum InventoryOnDeath {
     public static List<String> getDescription() {
         return List.of(
                 "DEFAULT : Minecraft default",
+                "TOTEM : CLEAR + totem",
                 "CLEAR : Clear inventory on death",
                 "KEEP : Keep inventory on death"
         );
