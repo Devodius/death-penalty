@@ -10,6 +10,7 @@ public class DeathPenaltyConfig extends Loadable {
 
     private InventoryOnDeath inventoryOnDeath;
     private boolean enableCustomTotemCraft;
+    private boolean enableDeathCount;
 
     @Override
     public void load(final DeathPenaltyPlugin plugin) {
@@ -30,6 +31,7 @@ public class DeathPenaltyConfig extends Loadable {
     private void loadAll() {
         loadInventoryOnDeath();
         loadEnableCustomTotemCraft();
+        loadEnableDeathCount();
     }
 
     private void loadInventoryOnDeath() {
@@ -38,6 +40,10 @@ public class DeathPenaltyConfig extends Loadable {
 
     private void loadEnableCustomTotemCraft() {
         enableCustomTotemCraft = deathPenaltyConfigFile.getEnableTotemCraft();
+    }
+
+    private void loadEnableDeathCount() {
+        enableDeathCount = deathPenaltyConfigFile.getEnableDeathCount();
     }
 
     public InventoryOnDeath getInventoryOnDeath() {
@@ -51,5 +57,9 @@ public class DeathPenaltyConfig extends Loadable {
 
     public boolean isEnableCustomTotemCraft() {
         return enableCustomTotemCraft;
+    }
+
+    public boolean isEnableDeathCount() {
+        return enableDeathCount;
     }
 }

@@ -9,5 +9,5 @@ inventoryOnDeath: DEFAULT
 # You can replace the craft using a datapack or a command. cf plugin readme
 enableTotemCraft: true
 
-# TODO: Add texture pack load
-# TODO: Enable scoreboard
+# Should the death scoreboard be enabled
+enableDeathCount: true
