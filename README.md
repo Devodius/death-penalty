@@ -3,10 +3,11 @@
 </p>
 <h1 align="center">death-penalty</h1>
 
-This plugin is here to add consequences for death without being banned like in hardcore.  
+This plugin is here to add consequences for death without being banned like in hardcore.
 If enabled, on death all items will be deleted. There is also a scoreboard keeping track of the number of death.
 
 This plugin also add custom totem with craft that allow the inventory to be dropped or to keep the inventory.  
+To balance with the original totem, the loot from Evoker was disabled and a craft is added.  
 **The custom totem do not need to be in hand to work, they can be anywhere in your inventory.**
 
 [//]: # (TODO)
@@ -28,6 +29,14 @@ Default craft using quartz block, golden apple, dragon breath, wither skeleton h
 and netherite ingot:  
 ![The default craft for the keep inventory totem](/assets/craft-totem-of-keep-inventory.png)
 
+## Totem of undying
+
+This is the default minecraft totem.  
+It's loot is removed from the Evoker and this craft is added:  
+(resin block, turtle helmet, honey block, totem of drop inventory, beacon, totem of keep inventory, ochre froglight,
+pitcher plant, yellow shulker box)  
+![The added craft for the totem of undying](/assets/craft-totem-of-undying.png)
+
 ## Config
 
 ```yaml
@@ -39,11 +48,13 @@ and netherite ingot:
 inventoryOnDeath: DEFAULT
 
 # Should the craft for custom totem be enabled.
+# Passing this option to false will also allow evoker to drop totems of undying again.
 # You can replace the craft using a datapack or a command. cf plugin readme
 enableTotemCraft: true
 
 # Should the death scoreboard be enabled
 enableDeathCount: true
+
 ```
 
 ## Commands
