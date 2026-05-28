@@ -8,10 +8,12 @@ public class NamespaceKeyService extends Loadable {
 
     private static final String KEY_TOTEM_OF_DROP_INVENTORY = "totem_of_drop_inventory";
     private static final String KEY_TOTEM_OF_KEEP_INVENTORY = "totem_of_keep_inventory";
+    private static final String KEY_TOTEM_OF_UNDYING = "totem_of_undying";
     private static final String KEY_CUSTOM_TOTEM = "custom_totem";
 
     private NamespacedKey totemOfDropInventory;
     private NamespacedKey totemOfKeepInventory;
+    private NamespacedKey totemOfUndying;
     private NamespacedKey customTotem;
 
     @Override
@@ -20,6 +22,7 @@ public class NamespaceKeyService extends Loadable {
 
         totemOfDropInventory = new NamespacedKey(plugin, KEY_TOTEM_OF_DROP_INVENTORY);
         totemOfKeepInventory = new NamespacedKey(plugin, KEY_TOTEM_OF_KEEP_INVENTORY);
+        totemOfUndying = new NamespacedKey(plugin, KEY_TOTEM_OF_UNDYING);
         customTotem = new NamespacedKey(plugin, KEY_CUSTOM_TOTEM);
     }
 
@@ -29,6 +32,10 @@ public class NamespaceKeyService extends Loadable {
 
     public NamespacedKey getTotemOfKeepInventory() {
         return totemOfKeepInventory;
+    }
+
+    public NamespacedKey getTotemOfUndying() {
+        return totemOfUndying;
     }
 
     public NamespacedKey getCustomTotem() {
