@@ -10,9 +10,50 @@ This plugin also add custom totem with craft that allow the inventory to be drop
 To balance with the original totem, the loot from Evoker was disabled and a craft is added.  
 **The custom totem do not need to be in hand to work, they can be anywhere in your inventory.**
 
-[//]: # (TODO)
-A resource pack is given to add the custom totem models. It is planned to use paper to add the resource pack
-automatically.
+A resource pack is given to add the custom totem models.
+
+## Resource pack
+
+A resource pack is needed for the custom models of this plugin. If your users don't install it, they will see purple
+debug square.  
+**It is recommended to use the same resource pack version as the plugin**
+
+### Install methods
+
+#### Per user
+
+You can provide the resource pack to you users and have them install it in their instance.  
+This is the easiest to set up but user who don't do so or forget to activate it will not see the textures.
+
+#### Server resource pack
+
+You can serve the resource pack through server settings. You can give the server a link to download the resource pack
+and your users will be asked to download the resource pack, you can even enforce it.  
+However this method need the resource pack to be downloadable somewhere, you can either serve it yourself or you can use
+this project GitHub release page to download.  
+Example using the version at date of writing:
+
+```properties
+# server.properties
+require-resource-pack=true
+resource-pack=https\://github.com/Devodius/death-penalty/releases/download/0.3.0/death-penalty-resource-pack-0.3.0.zip
+resource-pack-prompt="You need this resource pack for the death-penalty totems"
+resource-pack-sha1=e8ba234bd3eceeac663c268a68daadadd507afc7
+```
+
+You will need to calculate the sha1 for each version yourself.
+
+#### Multiple resource pack
+
+The server can only ask for 1 resource pack. So if you have multiple, you will need to merge them and serve it yourself
+or use tools made for this purpose.
+
+#### Custom resource pack
+
+You can use a custom resource pack for the totem. To do so, you will need to have models with these keys:
+
+- `death_penalty_plugin:totem_of_drop_inventory`
+- `death_penalty_plugin:totem_of_keep_inventory`
 
 ## Totems
 
@@ -29,7 +70,7 @@ Default craft using quartz block, golden apple, dragon breath, wither skeleton h
 and netherite ingot:  
 ![The default craft for the keep inventory totem](/assets/craft-totem-of-keep-inventory.png)
 
-## Totem of undying
+### Totem of undying
 
 This is the default minecraft totem.  
 It's loot is removed from the Evoker and this craft is added:  
@@ -86,3 +127,11 @@ Value to use for custom_totem:
 
 [!WARNING]
 If the given item isn't a minecraft:totem_of_undying, the animation on death will show a default totem.
+
+## FAQ
+
+### Why do I see purple debug square ?
+
+Do you see this ?  
+![Picture about a purple debug square](/assets/faq/purple-debug-square.png)  
+Then the resource pack is not installed
