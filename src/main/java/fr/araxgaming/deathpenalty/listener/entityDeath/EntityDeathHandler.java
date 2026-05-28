@@ -10,7 +10,9 @@ public class EntityDeathHandler extends Loadable implements PluginEventHandler<E
 
     @Override
     public void execute(final EntityDeathEvent event) {
-        removeTotemOfUndyingDrop(event);
+        if (plugin.getPluginConfig().isEnableCustomTotemCraft()) {
+            removeTotemOfUndyingDrop(event);
+        }
     }
 
     private void removeTotemOfUndyingDrop(final EntityDeathEvent event) {
