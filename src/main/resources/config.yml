@@ -6,6 +6,7 @@
 inventoryOnDeath: DEFAULT
 
 # Should the craft for custom totem be enabled.
+# Passing this option to false will also allow evoker to drop totems of undying again.
 # You can replace the craft using a datapack or a command. cf plugin readme
 enableTotemCraft: true
 
